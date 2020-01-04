@@ -95,7 +95,9 @@ public class NotificationActionReceiver extends BroadcastReceiver implements Met
                 public void success(Object result) {
                     Log.i(TAG, "Success processing enqueue!");
                     flutterNativeView.destroy();
-                    notificationManagerCompat.cancel(incomingAction.notificationDetails.id);
+                    if(incomingAction.notificationActionId.contains("CLOSE")){
+                        notificationManagerCompat.cancel(incomingAction.notificationDetails.id);
+                    }
                     incomingAction.result.finish();
                 }
 
